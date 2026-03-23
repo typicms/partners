@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Partners\Models;
 
+use Override;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -66,6 +67,7 @@ class Partner extends Model implements Sortable
     protected $guarded = [];
 
     /** @return array<string, string> */
+    #[Override]
     protected function casts(): array
     {
         return [
@@ -122,7 +124,7 @@ class Partner extends Model implements Sortable
     /** @return Attribute<string, null> */
     protected function thumb(): Attribute
     {
-        return Attribute::make(get: fn () => imageOrDefault($this->image, null, 54));
+        return Attribute::make(get: fn (): string => imageOrDefault($this->image, null, 54));
     }
 
     /** @return BelongsTo<File, $this> */
