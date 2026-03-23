@@ -16,8 +16,11 @@ use Spatie\EloquentSortable\SortableTrait;
 use TypiCMS\Modules\Core\Models\File;
 use TypiCMS\Modules\Core\Models\History;
 use TypiCMS\Modules\Core\Traits\HasAdminUrls;
+use TypiCMS\Modules\Core\Traits\HasBodyPresenter;
 use TypiCMS\Modules\Core\Traits\HasConfigurableOrder;
-use TypiCMS\Modules\Core\Traits\HasPresenterMethods;
+use TypiCMS\Modules\Core\Traits\HasContentPresenter;
+use TypiCMS\Modules\Core\Traits\HasImagePresenter;
+use TypiCMS\Modules\Core\Traits\HasOgImagePresenter;
 use TypiCMS\Modules\Core\Traits\HasSelectableFields;
 use TypiCMS\Modules\Core\Traits\HasSlugScope;
 use TypiCMS\Modules\Core\Traits\Historable;
@@ -30,6 +33,7 @@ use TypiCMS\Translatable\HasTranslations;
  * @property bool $homepage
  * @property int $position
  * @property int|null $image_id
+ * @property int|null $og_image_id
  * @property string $status
  * @property string $title
  * @property string $slug
@@ -41,14 +45,18 @@ use TypiCMS\Translatable\HasTranslations;
  * @property-read Collection<int, History> $history
  * @property-read int|null $history_count
  * @property-read File|null $image
+ * @property-read File|null $ogImage
  * @property-read mixed $thumb
  * @property-read mixed $translations
  */
 class Partner extends Model implements Sortable
 {
     use HasAdminUrls;
+    use HasBodyPresenter;
     use HasConfigurableOrder;
-    use HasPresenterMethods;
+    use HasContentPresenter;
+    use HasImagePresenter;
+    use HasOgImagePresenter;
     use HasSelectableFields;
     use HasSlugScope;
     use HasTranslations;
@@ -123,5 +131,11 @@ class Partner extends Model implements Sortable
     public function image(): BelongsTo
     {
         return $this->belongsTo(File::class, 'image_id');
+    }
+
+    /** @return BelongsTo<File, $this> */
+    public function ogImage(): BelongsTo
+    {
+        return $this->belongsTo(File::class, 'og_image_id');
     }
 }
