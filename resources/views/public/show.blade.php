@@ -14,7 +14,7 @@
                     <x-core::items-navigator :$model :$page />
                 </div>
                 <h1 class="partner-title">{{ $model->title }}</h1>
-                @if(!empty($model->website))
+                @if ($model->website)
                     <p class="partner-website">
                         <a class="partner-website-link" href="{{ $model->website }}" target="_blank" rel="noopener noreferrer">
                             {{ $model->website }}
@@ -31,10 +31,10 @@
                 'url' => $model->website,
             ]" />
             <p class="partner-summary">{!! nl2br($model->summary) !!}</p>
-            @if(!empty($model->image))
+            @if ($model->image)
                 <figure class="partner-picture">
-                    <img class="partner-picture-image" src="{{ $model->imageUrl(2000) }}" width="{{ $model->image->width }}" height="{{ $model->image->height }}" alt="" />
-                    @if(!empty($model->image->description))
+                    <img class="partner-picture-image" src="{{ $model->image->render(2000) }}" width="{{ $model->image->width }}" height="{{ $model->image->height }}" alt="" />
+                    @if ($model->image->description)
                         <figcaption class="partner-picture-legend">{{ $model->image->description }}</figcaption>
                     @endif
                 </figure>
