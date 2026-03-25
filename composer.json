@@ -1,6 +1,6 @@
 {
     "name": "typicms/partners",
-    "description": "",
+    "description": "A module to manage and display multilingual partner listings in TypiCMS applications.",
     "license": "MIT",
     "authors": [
         {
