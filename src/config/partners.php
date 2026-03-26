@@ -9,7 +9,7 @@ return [
         'position' => 'asc',
     ],
     'sidebar' => [
-        'icon' => '<i class="icon-user"></i>',
+        'icon' => '<i class="icon-handshake"></i>',
         'weight' => 70,
     ],
     'permissions' => [
