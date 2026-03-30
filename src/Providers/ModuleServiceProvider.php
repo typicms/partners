@@ -6,10 +6,7 @@ namespace TypiCMS\Modules\Partners\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use TypiCMS\Modules\Core\Observers\SlugObserver;
-use TypiCMS\Modules\Core\Observers\TipTapHTMLObserver;
 use TypiCMS\Modules\Partners\Composers\SidebarViewComposer;
-use TypiCMS\Modules\Partners\Models\Partner;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -30,10 +27,6 @@ class ModuleServiceProvider extends ServiceProvider
             __DIR__ . '/../../resources/views' => resource_path('views/vendor/partners'),
         ], 'typicms-views');
         $this->publishes([__DIR__ . '/../../resources/scss' => resource_path('scss')], 'typicms-resources');
-
-        // Observers
-        Partner::observe(new SlugObserver());
-        Partner::observe(new TipTapHTMLObserver());
 
         View::composer('core::admin._sidebar', SidebarViewComposer::class);
 

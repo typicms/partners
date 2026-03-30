@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Partners\Models;
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +18,8 @@ use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use TypiCMS\Modules\Core\Models\File;
 use TypiCMS\Modules\Core\Models\History;
+use TypiCMS\Modules\Core\Observers\SlugObserver;
+use TypiCMS\Modules\Core\Observers\TipTapHTMLObserver;
 use TypiCMS\Modules\Core\Traits\HasAdminUrls;
 use TypiCMS\Modules\Core\Traits\HasBodyPresenter;
 use TypiCMS\Modules\Core\Traits\HasConfigurableOrder;
@@ -49,6 +53,8 @@ use TypiCMS\Translatable\HasTranslations;
  * @property-read mixed $thumb
  * @property-read mixed $translations
  */
+#[ObservedBy([SlugObserver::class, TipTapHTMLObserver::class])]
+#[Unguarded]
 class Partner extends Model implements Sortable
 {
     use HasAdminUrls;
@@ -63,8 +69,6 @@ class Partner extends Model implements Sortable
     use Navigable;
     use Publishable;
     use SortableTrait;
-
-    protected $guarded = [];
 
     /** @return array<string, string> */
     #[Override]
