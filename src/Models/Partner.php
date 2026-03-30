@@ -118,7 +118,7 @@ class Partner extends Model implements Sortable
     {
         $url = $this->url($locale);
 
-        if (!$url) {
+        if (! $url) {
             return null;
         }
 

@@ -12,21 +12,21 @@ class ModuleServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/partners.php', 'typicms.modules.partners');
+        $this->mergeConfigFrom(__DIR__.'/../config/partners.php', 'typicms.modules.partners');
 
-        $this->loadRoutesFrom(__DIR__ . '/../routes/partners.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/partners.php');
 
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'partners');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'partners');
 
         $this->publishes([
-            __DIR__ . '/../../database/migrations/create_partners_table.php.stub' => getMigrationFileName(
+            __DIR__.'/../../database/migrations/create_partners_table.php.stub' => getMigrationFileName(
                 'create_partners_table',
             ),
         ], 'typicms-migrations');
         $this->publishes([
-            __DIR__ . '/../../resources/views' => resource_path('views/vendor/partners'),
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/partners'),
         ], 'typicms-views');
-        $this->publishes([__DIR__ . '/../../resources/scss' => resource_path('scss')], 'typicms-resources');
+        $this->publishes([__DIR__.'/../../resources/scss' => resource_path('scss')], 'typicms-resources');
 
         View::composer('core::admin._sidebar', SidebarViewComposer::class);
 
