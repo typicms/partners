@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Partners\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Appends;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -55,6 +56,7 @@ use TypiCMS\Translatable\HasTranslations;
  */
 #[ObservedBy([SlugObserver::class, TipTapHTMLObserver::class])]
 #[Unguarded]
+#[Appends(['thumb'])]
 class Partner extends Model implements Sortable
 {
     use HasAdminUrls;
@@ -78,8 +80,6 @@ class Partner extends Model implements Sortable
             'homepage' => 'boolean',
         ];
     }
-
-    protected $appends = ['thumb'];
 
     /** @var array<string> */
     public array $translatable = [
