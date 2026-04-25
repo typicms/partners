@@ -1,5 +1,5 @@
 <ul class="partner-list-list">
     @foreach ($items as $partner)
-        @include('partners::public._list-item')
+        @include('public::partners._list-item')
     @endforeach
 </ul>

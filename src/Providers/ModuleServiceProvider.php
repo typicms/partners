@@ -21,24 +21,25 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/partners.php');
 
-        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'partners');
-
         $this->publishes([
             __DIR__.'/../../database/migrations/create_partners_table.php.stub' => getMigrationFileName(
                 'create_partners_table',
             ),
         ], 'typicms-migrations');
         $this->publishes([
-            __DIR__.'/../../resources/views' => resource_path('views/vendor/partners'),
-        ], 'typicms-views');
+            __DIR__.'/../../resources/views/admin/partners' => resource_path('views/admin/partners'),
+        ], ['typicms-views', 'typicms-admin-views', 'typicms-admin-partners-views']);
+        $this->publishes([
+            __DIR__.'/../../resources/views/public/partners' => resource_path('views/public/partners'),
+        ], ['typicms-views', 'typicms-public-views', 'typicms-public-partners-views']);
         $this->publishes([__DIR__.'/../../resources/scss' => resource_path('scss')], 'typicms-resources');
 
-        View::composer('core::admin._sidebar', SidebarViewComposer::class);
+        View::composer('admin::core._sidebar', SidebarViewComposer::class);
 
         /*
          * Add the page in the view.
          */
-        View::composer('partners::public.*', function ($view): void {
+        View::composer('public::partners.*', function ($view): void {
             $view->page = getPageLinkedToModule('partners');
         });
     }

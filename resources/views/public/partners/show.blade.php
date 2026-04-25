@@ -1,4 +1,4 @@
-@extends('core::public.master')
+@extends('public::core.master')
 
 @section('title', $model->title . ' – ' . __('Partners') . ' – ' . $websiteTitle)
 @section('ogTitle', $model->title ?? '')

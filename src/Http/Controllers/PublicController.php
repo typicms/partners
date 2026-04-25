@@ -18,7 +18,7 @@ final class PublicController extends BasePublicController
             ->with('image')
             ->get();
 
-        return view('partners::public.index', ['models' => $models]);
+        return view('public::partners.index', ['models' => $models]);
     }
 
     public function show(string $slug): View
@@ -28,6 +28,6 @@ final class PublicController extends BasePublicController
             ->whereSlugIs($slug)
             ->firstOrFail();
 
-        return view('partners::public.show', ['model' => $model]);
+        return view('public::partners.show', ['model' => $model]);
     }
 }
