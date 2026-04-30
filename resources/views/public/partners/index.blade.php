@@ -1,8 +1,7 @@
-@extends('public::pages.master')
-
-@section('bodyClass', 'body-partners body-partners-index body-page body-page-' . $page->id)
-
-@section('page')
+<x-core::layouts.page
+    :page="$page"
+    :body-class="'body-partners body-partners-index body-page body-page-' . $page->id"
+>
     <div class="page-body">
         <div class="page-body-container">
             @include('public::pages._main-content', ['page' => $page])
@@ -22,4 +21,4 @@
             @includeWhen($models->count() > 0, 'public::partners._list', ['items' => $models])
         </div>
     </div>
-@endsection
+</x-core::layouts.page>
