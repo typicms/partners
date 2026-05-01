@@ -16,20 +16,20 @@
                 <h1 class="partner-title">{{ $model->title }}</h1>
                 @if ($model->website)
                     <p class="partner-website">
-                        <a class="partner-website-link" href="{{ $model->website }}" target="_blank" rel="noopener noreferrer">
-                            {{ $model->website }}
-                        </a>
+                        <a class="partner-website-link" href="{{ $model->website }}" target="_blank" rel="noopener noreferrer">{{ $model->website }}</a>
                     </p>
                 @endif
             </div>
         </header>
         <div class="partner-body">
-            <x-core::json-ld :schema="[
+            <x-core::json-ld
+                :schema="[
                 '@context' => 'https://schema.org',
                 '@type' => 'Organization',
                 'name' => $model->title,
                 'url' => $model->website,
-            ]" />
+            ]"
+            />
             <p class="partner-summary">{!! nl2br($model->summary) !!}</p>
             @if ($model->image)
                 <figure class="partner-picture">

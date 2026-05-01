@@ -5,18 +5,11 @@
 
     <div class="row">
         <div class="col-lg-8">
-            <div class="mb-3">
-                {!! BootForm::hidden('homepage')->value(0) !!}
-                {!! BootForm::checkbox(__('Homepage'), 'homepage') !!}
-            </div>
+            <div class="mb-3">{!! BootForm::hidden('homepage')->value(0) !!} {!! BootForm::checkbox(__('Homepage'), 'homepage') !!}</div>
 
             <x-core::title-and-slug-fields />
-            <div class="mb-3">
-                {!! TranslatableBootForm::hidden('status')->value(0) !!}
-                {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
-            </div>
-            {!! TranslatableBootForm::text(__('Website'), 'website')->placeholder('https://') !!}
-            {!! TranslatableBootForm::textarea(__('Summary'), 'summary')->rows(4) !!}
+            <div class="mb-3">{!! TranslatableBootForm::hidden('status')->value(0) !!} {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}</div>
+            {!! TranslatableBootForm::text(__('Website'), 'website')->placeholder('https://') !!} {!! TranslatableBootForm::textarea(__('Summary'), 'summary')->rows(4) !!}
             <x-core::tiptap-editors :model="$model" name="body" :label="__('Body')" />
         </div>
         <div class="col-lg-4">

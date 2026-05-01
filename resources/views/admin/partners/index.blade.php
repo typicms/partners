@@ -1,5 +1,15 @@
 <x-core::layouts.admin :title="__('Partners')">
-    <item-list url-base="/api/partners" fields="id,image_id,position,status,title" table="partners" title="partners" include="image" :exportable="true" :searchable="['title']" :sorting="['position']" :draggable="$can('update partners')">
+    <item-list
+        url-base="/api/partners"
+        fields="id,image_id,position,status,title"
+        table="partners"
+        title="partners"
+        include="image"
+        :exportable="true"
+        :searchable="['title']"
+        :sorting="['position']"
+        :draggable="$can('update partners')"
+    >
         <template #top-buttons v-if="$can('create partners')">
             <x-core::create-button :url="route('admin::create-partner')" :label="__('Create partner')" />
         </template>
