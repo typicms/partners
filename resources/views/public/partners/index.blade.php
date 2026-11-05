@@ -1,4 +1,4 @@
-<x-core::layouts.page :page="$page" :body-class="'body-partners body-partners-index body-page body-page-' . $page->id">
+<x-core::layouts.page :page="$page" :body-class="'body-partners body-partners-index body-page body-page-'.$page->id">
     <div class="page-body">
         <div class="page-body-container">
             @include('public::pages._main-content', ['page' => $page])
