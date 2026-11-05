@@ -6,6 +6,7 @@ namespace TypiCMS\Modules\Partners\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View as ViewInstance;
 use Override;
 use TypiCMS\Modules\Partners\Composers\SidebarViewComposer;
 
@@ -49,8 +50,8 @@ class ModuleServiceProvider extends ServiceProvider
         /*
          * Add the page in the view.
          */
-        View::composer('public::partners.*', function ($view): void {
-            $view->page = getPageLinkedToModule('partners');
+        View::composer('public::partners.*', function (ViewInstance $view): void {
+            $view->with('page', getPageLinkedToModule('partners'));
         });
     }
 }

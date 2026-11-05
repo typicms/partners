@@ -33,8 +33,12 @@ final class ApiController extends BaseApiController
     {
         foreach ($request->only('status', 'position') as $key => $content) {
             if ($partner->isTranslatableAttribute($key)) {
+                if (! is_array($content)) {
+                    continue;
+                }
+
                 foreach ($content as $lang => $value) {
-                    $partner->setTranslation($key, $lang, $value);
+                    $partner->setTranslation($key, (string) $lang, $value);
                 }
             } else {
                 $partner->{$key} = $content;
